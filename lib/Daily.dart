@@ -8,8 +8,32 @@ class Daily extends StatefulWidget {
 }
 
 class _DailyState extends State<Daily> {
-  VideoPlayerController _controller;
+  VideoPlayerController vidcon,vidcon2,vidcon3,vidcon4,vidcon5;
   List ok = ['ok', 'okk', 'noise', 'kid', 'happ'];
+  @override
+  void initState(){
+    vidcon = VideoPlayerController.asset(
+      'assets/ok.mp4',
+    );
+    vidcon.initialize();
+    vidcon2 = VideoPlayerController.asset(
+      'assets/okk.mp4',
+    );
+    vidcon2.initialize();
+    vidcon3 = VideoPlayerController.asset(
+      'assets/noise.mp4',
+    );
+    vidcon3.initialize();
+    vidcon4 = VideoPlayerController.asset(
+      'assets/kid.mp4',
+    );
+    vidcon4.initialize();
+    vidcon5 = VideoPlayerController.asset(
+      'assets/happ.mp4',
+    );
+    vidcon5.initialize();
+    super.initState();
+  }
   Widget doFoodList(BuildContext context, int index) {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
@@ -17,11 +41,8 @@ class _DailyState extends State<Daily> {
     var americanYellow = Color(0xFFF1B900);
     var cetaBlue = Color(0xFF0C005B);
     var navyblue = Color(0xff030081);
-    _controller = VideoPlayerController.asset(
-      'assets/' + ok[index] + '.mp4',
-    );
-    _controller.initialize();
-    _controller.setLooping(true);
+    
+    
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -118,7 +139,7 @@ class _DailyState extends State<Daily> {
           Container(
             width: w * 0.85,
             child: Chewie(
-              controller: ChewieController(videoPlayerController: _controller),
+              controller: ChewieController(videoPlayerController: index==0?vidcon:index==1?vidcon2:index==2?vidcon3:index==3?vidcon4:vidcon5),
             ),
           ),
           SizedBox(
@@ -131,6 +152,15 @@ class _DailyState extends State<Daily> {
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    vidcon.dispose();
+    vidcon2.dispose();
+    vidcon3.dispose();
+    vidcon4.dispose();
+    vidcon5.dispose();
+    super.dispose();
   }
 
   @override

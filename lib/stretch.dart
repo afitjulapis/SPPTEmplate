@@ -14,15 +14,11 @@ class _StrState extends State<Str> {
 
   @override
   void initState() {
-    // Create and store the VideoPlayerController. The VideoPlayerController
-    // offers several different constructors to play videos from assets, files,
-    // or the internet.
     _controller = VideoPlayerController.asset(
       'assets/okk.mp4',
     );
     _controller.initialize();
 
-    // Use the controller to loop the video.
     _controller.setLooping(true);
 
     super.initState();
@@ -30,7 +26,6 @@ class _StrState extends State<Str> {
 
   @override
   void dispose() {
-    // Ensure disposing of the VideoPlayerController to free up resources.
     _controller.dispose();
 
     super.dispose();
